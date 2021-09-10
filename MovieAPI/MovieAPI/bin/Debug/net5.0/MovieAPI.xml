@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovieAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MovieAPI.Controllers.MovieItemsController.GetMovieItems">
+            <summary>
+            Get Movie Item
+            </summary>
+        </member>
+        <member name="M:MovieAPI.Controllers.MovieItemsController.PostMovieItem(MovieAPI.Models.MovieItem)">
+             <summary>
+             Creates a MovieItem.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /Todo
+                 {
+                    "id": 1,
+                    "name": "Item1",
+                    "isComplete": true
+                 }
+            
+             </remarks>
+             <param name="item"></param>
+             <returns>A newly created MovieItem</returns>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response>  
+        </member>
+        <member name="M:MovieAPI.Controllers.MovieItemsController.DeleteMovieItem(System.Int64)">
+            <summary>
+            Deletes a specific MovieItem.
+            </summary>
+            <param name="id"></param>  
+        </member>
+    </members>
+</doc>

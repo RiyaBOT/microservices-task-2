@@ -13,6 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using MovieAPI.Models;
+using System;
+using System.Reflection;
+using System.IO;
 
 namespace MovieAPI
 {
@@ -32,9 +35,31 @@ namespace MovieAPI
             services.AddControllers();
             services.AddDbContext<MovieContext>(opt =>
                                                opt.UseInMemoryDatabase("MovieList"));
+            /* Added in the Open API 3.0 specification */
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Movie API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://google.com"), /* dummy site*/
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Riya Sheth",
+                        Email = "riya_sheth@simtech.a-star.edu.sg",
+                        Url = new Uri("https://twitter.com"), /*dummy site*/
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"), /*dummy site*/
+                    }
+                });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
             });
         }
 

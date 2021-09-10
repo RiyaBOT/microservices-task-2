@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace MovieAPI.Models
     public class MovieItem
     {
         public long Id { get; set; }
+        [Required]
         public string Name { get; set; }/*Name of the Movie*/
         public string Date { get; set; }
         public string Time { get; set; }
